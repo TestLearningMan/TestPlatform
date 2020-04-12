@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.platform.testcase.dao.TeamMapper" >
+  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.Team" >
+    <constructor >
+      <arg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="tester_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modified_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.platform.testcase.pojo.Team" >
+    insert into tp_case_team (id, tester_id, create_time, 
+      modified_time, creator_id, modifier_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{testerId,jdbcType=BIGINT},now(),
+      now(), #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Team" >
+    insert into tp_case_team
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="testerId != null" >
+        tester_id,
+      </if>
+        create_time,
+        modified_time,
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="testerId != null" >
+        #{testerId,jdbcType=BIGINT},
+      </if>
+        now(),
+        now(),
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

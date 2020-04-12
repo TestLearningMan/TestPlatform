@@ -1,0 +1,32 @@
+2020-03-03 22:51:03 -Starting BootdoApplication on DESKTOP-1DQTBLC with PID 176020 (started by 贝亚娜逗神 in E:\IT\IDEA\IDEA WROKSPACE\bootdo)
+2020-03-03 22:51:03 -Running with Spring Boot v2.0.3.RELEASE, Spring v5.0.7.RELEASE
+2020-03-03 22:51:03 -The following profiles are active: dev
+2020-03-03 22:51:04 -Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@793138bd: startup date [Tue Mar 03 22:51:04 CST 2020]; root of context hierarchy
+2020-03-03 22:51:09 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-03-03 22:51:11 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5ac0ea91] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:11 -Bean 'shiroConfig' of type [com.bootdo.system.config.ShiroConfig$$EnhancerBySpringCGLIB$$4d1a1938] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:12 -Bean 'userRealm' of type [com.bootdo.system.shiro.UserRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:12 -Bean 'cacheManager2' of type [net.sf.ehcache.CacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:12 -Bean 'ehCacheManager' of type [org.apache.shiro.cache.ehcache.EhCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:12 -Cache with name 'com.bootdo.system.shiro.UserRealm.authorizationCache' does not yet exist.  Creating now.
+2020-03-03 22:51:12 -Added EhCache named [com.bootdo.system.shiro.UserRealm.authorizationCache]
+2020-03-03 22:51:12 -Bean 'sessionDAO' of type [org.apache.shiro.session.mgt.eis.MemorySessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:12 -Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:12 -Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:13 -Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-03-03 22:51:13 -Tomcat initialized with port(s): 80 (http)
+2020-03-03 22:51:13 -Initializing ProtocolHandler ["http-nio-80"]
+2020-03-03 22:51:13 -Starting service [Tomcat]
+2020-03-03 22:51:14 -Starting Servlet Engine: Apache Tomcat/8.5.31
+2020-03-03 22:51:14 -The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [E:\IT\java\jdk-9.0.4\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;E:\IT\java\jdk-9.0.4\bin;E:\IT\java\jre-9.0.4\bin;D:\xshell6\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\adb;E:\IT\ecli\apache-maven-3.5.3-bin\apache-maven-3.5.3\bin;";E:\IT\Android\android-sdk_r24.4.1-windows\android-sdk-windows\platform-tools;E:\IT\Android\android-sdk_r24.4.1-windows\android-sdk-windows\tools;";C:\Program Files (x86)\Common Files\Thunder Network\KanKan\Codecs;E:\IT\git1\Git\cmd;E:\IT\git1\Git\bin;C:\Users\miku\AppData\Local\Microsoft\WindowsApps;D:\fiddler;C:\Users\miku\AppData\Local\GitHubDesktop\bin;E:\IT\IDEA\IntelliJ IDEA 2018.3.3\bin;C:\Users\miku\AppData\Local\BypassRuntm;.]
+2020-03-03 22:51:14 -Initializing Spring embedded WebApplicationContext
+2020-03-03 22:51:14 -Root WebApplicationContext: initialization completed in 9913 ms
+2020-03-03 22:51:14 -Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-03-03 22:51:14 -Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-03-03 22:51:14 -Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-03-03 22:51:14 -Mapping filter: 'requestContextFilter' to: [/*]
+2020-03-03 22:51:14 -Filter xssFilter was not registered (disabled)
+2020-03-03 22:51:14 -Mapping filter: 'webStatFilter' to urls: [/*]
+2020-03-03 22:51:14 -Mapping filter: 'shiroFilterFactoryBean' to: [/*]
+2020-03-03 22:51:14 -Servlet statViewServlet mapped to [/druid/*]
+2020-03-03 22:51:14 -Servlet dispatcherServlet mapped to [/]

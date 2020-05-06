@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 })
 @EnableTransactionManagement
 @ServletComponentScan
+//当mapper类与application启动类不在一个目录或者子目录时，需要添加扫描目录
 @MapperScan({"com.bootdo.*.dao","com.platform.*.dao"})
+//当controller，pojo，service类与application启动类不在一个目录或者子目录时，需要添加扫描目录
 @SpringBootApplication(scanBasePackages = {"com.bootdo","com.platform.testcase"})
 @EnableCaching
 public class BootdoApplication {

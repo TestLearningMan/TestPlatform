@@ -100,12 +100,15 @@
   </update>
 
   <delete id="delete" parameterType="Long" >
+    <if test="productId != null">
     delete
     from tp_case_product
     where id=#{productId}
+    </if>
   </delete>
 
   <delete id="batchDelete" parameterType="map"  >
+    <if test="productIdList != null">
     delete
     from tp_case_product
     where
@@ -113,7 +116,9 @@
     <foreach collection="productIdList" separator="," open="(" close=")" index="incex" item="item">
       #{item}
     </foreach>
+    </if>
   </delete>
+
 
 
 </mapper>

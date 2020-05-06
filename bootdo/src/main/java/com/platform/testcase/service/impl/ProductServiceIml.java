@@ -1,14 +1,17 @@
 package com.platform.testcase.service.impl;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import com.platform.testcase.dao.ProductMapper;
 import com.platform.testcase.pojo.Product;
 import com.platform.testcase.service.IProductService;
+import com.platform.testcase.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.bootdo.common.utils.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -27,34 +30,53 @@ public class ProductServiceIml implements IProductService {
             product.setModifierId(ShiroUtils.getUserId());
             int result = productMapper.insertSelective(product);
             if (result > 0){
-                return R.ok();
+                return R.ok("新增产品成功");
             }
-                return R.error();
+                return R.error("新增产品失败");
 
         }
         else{
             product.setModifierId(ShiroUtils.getUserId());
             int result = productMapper.save(product);
             if (result > 0){
-                return R.ok();
+                return R.ok("保存产品成功");
             }
-            return R.error();
+            return R.error("所选商品不存在，请重新选择商品修改");
             }
         }
 
     public R delete(Long id){
         int result=productMapper.delete(id);
         if (result > 0){
-            return R.ok();
+            return R.ok("删除产品成功");
         }
-        return R.error();
+        return R.error("此产品已被删除，请勿重复操作");
     }
 
     public R batchDelete(String productIds){
         List<String> productIdList = Splitter.on(",").splitToList(productIds);
         if (productIdList.size() == 0){
-            return R.error();
+            return R.error("请刷新页面，重新选择要删除的产品");
+        }
+        int result=productMapper.batchDelete(productIdList);
+        if (result > 0){
+            return R.ok("批量删除产品成功");}
+        return R.error("所选产品已被删除，请勿重复操作");
+    }
+
+    public R search(String condition){
+        if (StringUtils.isBlank(condition)){
+            return R.error("查询条件不能为空");
         }
 
     }
+
+    private LinkedList<ProductVo> assemble(String condition){
+        LinkedList<ProductVo> productVoListL = Lists.newLinkedList();
+        if (StringUtils.isBlank(condition)){
+            return productVoListL;
+        }
+
+    }
+
 }

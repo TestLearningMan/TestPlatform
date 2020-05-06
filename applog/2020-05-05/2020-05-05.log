@@ -3902,3 +3902,21 @@ Consider defining a bean of type 'com.platform.testcase.service.IProductService'
 2020-05-05 22:19:32 -Finished session validation.  No sessions were stopped.
 2020-05-05 22:20:23 -WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 12], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 2], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 1, completed tasks = 4341]
 2020-05-05 22:50:23 -WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 12], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 2], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 1, completed tasks = 4702]
+2020-05-05 23:13:01 -Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@186978a6: startup date [Tue May 05 16:19:03 CST 2020]; root of context hierarchy
+2020-05-05 23:13:01 -Stopping beans in phase 2147483647
+2020-05-05 23:13:01 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED paused.
+2020-05-05 23:13:01 -Stopping...
+2020-05-05 23:13:01 -BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2020-05-05 23:13:01 -Stopped.
+2020-05-05 23:13:01 -Unregistering JMX-exposed beans on shutdown
+2020-05-05 23:13:01 -Unregistering JMX-exposed beans
+2020-05-05 23:13:01 -Shutting down ExecutorService 'brokerChannelExecutor'
+2020-05-05 23:13:01 -Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2020-05-05 23:13:01 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED shutting down.
+2020-05-05 23:13:01 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED paused.
+2020-05-05 23:13:01 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED shutdown complete.
+2020-05-05 23:13:01 -Shutting down Quartz Scheduler
+2020-05-05 23:13:01 -Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2020-05-05 23:13:01 -Shutting down ExecutorService 'clientInboundChannelExecutor'
+2020-05-05 23:13:01 -{dataSource-1} closed
+2020-05-05 23:13:01 -Disabled session validation scheduler.

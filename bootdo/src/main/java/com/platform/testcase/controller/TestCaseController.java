@@ -21,17 +21,16 @@ public class TestCaseController {
         if (StringUtils.isBlank(product.getProductName())){
             return R.error(-1,"产品名称不能为空");
         }
-        Long userId=ShiroUtils.getUserId();
-        return iProductService.saveProduct(product);
+        return iProductService.save(product);
     }
 
     @RequestMapping(value = "/delete.do",method = RequestMethod.POST)
     @ResponseBody
     public R deleteProduct(Long id){
-        if (StringUtils.isBlank(id)){
-            R.error(-1,"前端参数传递错误，请刷新页面后，重新操作")；
+        if (null == id || id == 0 ){
+            R.error(-1,"前端参数传递错误，请刷新页面后，重新操作");
         }
-        return iProductService.deleteProduct(id);
+        return iProductService.delete(id);
     }
 
     @RequestMapping(value = "/batchDelete")
@@ -40,6 +39,16 @@ public class TestCaseController {
         if (StringUtils.isBlank(productIds)){
             R.error(-1,"请先选择需要删除的产品");
         }
+        return iProductService.batchDelete(productIds);
+    }
+
+    @RequestMapping(value = "/search")
+    @ResponseBody
+    public R search(String condition){
+        if (StringUtils.isBlank(condition)){
+            R.error("查询条件不能为空");
+        }
 
     }
+
 }

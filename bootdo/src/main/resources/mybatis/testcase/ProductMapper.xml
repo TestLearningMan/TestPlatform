@@ -111,14 +111,29 @@
     <if test="productIdList != null">
     delete
     from tp_case_product
-    where
+    <where>
     id in
     <foreach collection="productIdList" separator="," open="(" close=")" index="incex" item="item">
       #{item}
     </foreach>
+    </where>
     </if>
   </delete>
 
+  <select id="count" resultType="int">
+    select count(1)
+    from tp_case_product p
+    inner join t_platform_user u on p.productman_id = u.id
+    <where>
+        <if test="productName != null ">
+            and p.product_name = #{productName}
+        </if>
+        <if test="status != null"> and p.status </if>
+        <if test="productman != null"> and u.name = productman </if>
+    </where>
+  </select>
+  
+  <select id="list"
 
 
 </mapper>

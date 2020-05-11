@@ -28,6 +28,7 @@ public class TestDemo {
 
     @Test
     public void test() {
+        LinkedHashMap<String,Object> map = new LinkedHashMap();
 
     }
 

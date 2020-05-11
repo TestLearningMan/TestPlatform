@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.bootdo.common.utils.*;
 
+import java.util.Map;
+
 
 @RequestMapping("/testplatform/product")
 @Controller
@@ -42,13 +44,18 @@ public class TestCaseController {
         return iProductService.batchDelete(productIds);
     }
 
-    @RequestMapping(value = "/search")
+    @RequestMapping(value = "/list")
     @ResponseBody
-    public R search(String condition){
-        if (StringUtils.isBlank(condition)){
-            R.error("查询条件不能为空");
+    public R list(@RequestParam Map<String,Object> map){
+        Object limit = map.get("limit");
+        if (null == limit || StringUtils.isBlank(limit.toString())
+                || 0 == Integer.parseInt(limit.toString())) {
+            return R.error("每页条数不能为空");
         }
-
+        Query query = new Query(map);
+        int total =iProductService.count(map);
+        PageUtils pageUtils = iProductService.litt(map);
+        return iProductService.list(map);
     }
 
 }

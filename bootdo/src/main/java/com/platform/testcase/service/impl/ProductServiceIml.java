@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.bootdo.common.utils.*;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -64,11 +66,15 @@ public class ProductServiceIml implements IProductService {
         return R.error("所选产品已被删除，请勿重复操作");
     }
 
-    public R search(String condition){
-        if (StringUtils.isBlank(condition)){
-            return R.error("查询条件不能为空");
-        }
+    public List<ProductVo> list(Map<String,Object> map){
+        List<Product> products =
+        return R.ok() ;
 
+
+    }
+
+    public int count(Map<String,Object> map) {
+        return productMapper.count(map);
     }
 
     private LinkedList<ProductVo> assemble(String condition){
@@ -76,6 +82,7 @@ public class ProductServiceIml implements IProductService {
         if (StringUtils.isBlank(condition)){
             return productVoListL;
         }
+        return productVoListL;
 
     }
 

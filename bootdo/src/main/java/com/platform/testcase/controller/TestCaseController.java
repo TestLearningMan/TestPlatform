@@ -2,11 +2,14 @@ package com.platform.testcase.controller;
 
 import com.platform.testcase.pojo.Product;
 import com.platform.testcase.service.IProductService;
+import com.platform.testcase.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.bootdo.common.utils.*;
 
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -53,9 +56,13 @@ public class TestCaseController {
             return R.error("每页条数不能为空");
         }
         Query query = new Query(map);
-        int total =iProductService.count(map);
-        PageUtils pageUtils = iProductService.litt(map);
-        return iProductService.list(map);
+        int total = iProductService.count(map);
+        List<ProductVo> productVoLinkedHashMap =  iProductService.list(query);
+        PageUtils pageUtils = new PageUtils(productVoLinkedHashMap,
+                total);
+        R r = new R();
+        r.put("pageUtils",pageUtils);
+        return r;
     }
 
 }

@@ -123,17 +123,32 @@
   <select id="count" resultType="int">
     select count(1)
     from tp_case_product p
-    inner join t_platform_user u on p.productman_id = u.id
+    inner join (select id,name from t_platform_user) u
+    on p.productman_id = u.id
     <where>
         <if test="productName != null ">
             and p.product_name = #{productName}
         </if>
-        <if test="status != null"> and p.status </if>
-        <if test="productman != null"> and u.name = productman </if>
+        <if test="status != null"> and p.status = #{status} </if>
+        <if test="productman != null"> and u.name = #{productman} </if>
     </where>
   </select>
   
-  <select id="list"
+  <select id="list" resultType="com.platform.testcase.vo.ProductVo" >
+    select p.id,p.product_name,p.status,u.productman
+    from tp_case_product p
+    inner join (select id,`name` productman from t_platform_user ) u
+     on p.productman_id = u.id
+     <where>
+       <if  test="id != null">and p.id = #{id} </if>
+       <if  test="productman != null">and u.productman_id = #{productmanId}</if>
+       <if  test="status != null">and p.status = #{status} </if>
+     </where>
+     order by p.product_name
+     <if  test="offset != null and limit != null" >
+        limit #{offset},#{limit}
+     </if>
+  </select>
 
 
 </mapper>

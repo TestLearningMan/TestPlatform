@@ -1,6 +1,7 @@
 package com.platform.testcase.dao;
 
 import com.platform.testcase.pojo.Product;
+import com.platform.testcase.vo.ProductVo;
 
 import java.util.List;
 import java.util.Map;
@@ -20,5 +21,5 @@ public interface ProductMapper {
 
     int count(Map<String,Object> map);
 
-    List<Product> list(Map<String,Object> map);
+    List<ProductVo> list(Map<String,Object> query);
 }

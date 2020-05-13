@@ -66,24 +66,12 @@ public class ProductServiceIml implements IProductService {
         return R.error("所选产品已被删除，请勿重复操作");
     }
 
-    public List<ProductVo> list(Map<String,Object> map){
-        List<Product> products =
-        return R.ok() ;
-
-
+    public List<ProductVo> list(Map<String,Object> query){
+        List<ProductVo> products = productMapper.list(query);
+        return products;
     }
 
     public int count(Map<String,Object> map) {
         return productMapper.count(map);
     }
-
-    private LinkedList<ProductVo> assemble(String condition){
-        LinkedList<ProductVo> productVoListL = Lists.newLinkedList();
-        if (StringUtils.isBlank(condition)){
-            return productVoListL;
-        }
-        return productVoListL;
-
-    }
-
 }

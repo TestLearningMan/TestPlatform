@@ -5,16 +5,9 @@ public class ProductVo {
 
     private String productName;
 
-    private Long productmanId;
+    private String productman;
 
     private Integer status;
-
-    public ProductVo(Long id, String productName, Long productmanId, Integer status) {
-        this.id = id;
-        this.productName = productName;
-        this.productmanId = productmanId;
-        this.status = status;
-    }
 
     public Long getId() {
         return id;
@@ -32,12 +25,12 @@ public class ProductVo {
         this.productName = productName;
     }
 
-    public Long getProductmanId() {
-        return productmanId;
+    public String getProductman() {
+        return productman;
     }
 
-    public void setProductmanId(Long productmanId) {
-        this.productmanId = productmanId;
+    public void setProductman(String productman) {
+        this.productman = productman;
     }
 
     public Integer getStatus() {

@@ -27,12 +27,12 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, function_id, level, img_path, precondition, title, exc_step, Exp_results, remarks, 
-    status, apitest_caseid, unittest_caseid, uitest_caseid, backdev_id, relate_demand, 
+    id, function_id, level, img_path, precondition, title, exc_step, Exp_results, remarks,
+    status, apitest_caseid, unittest_caseid, uitest_caseid, backdev_id, relate_demand,
     frontdev_id, productman_id, create_time, modified_time, creator_id, modifier_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from tp_case_casedetail
     where id = #{id,jdbcType=BIGINT}
@@ -42,20 +42,20 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.platform.testcase.pojo.CaseDetail">
-    insert into tp_case_casedetail (id, function_id, level, 
-      img_path, precondition, title, 
-      exc_step, Exp_results, remarks, 
-      status, apitest_caseid, unittest_caseid, 
-      uitest_caseid, backdev_id, relate_demand, 
-      frontdev_id, productman_id, create_time, 
+    insert into tp_case_casedetail (id, function_id, level,
+      img_path, precondition, title,
+      exc_step, Exp_results, remarks,
+      status, apitest_caseid, unittest_caseid,
+      uitest_caseid, backdev_id, relate_demand,
+      frontdev_id, productman_id, create_time,
       modified_time, creator_id, modifier_id
       )
-    values (#{id,jdbcType=BIGINT}, #{functionId,jdbcType=BIGINT}, #{level,jdbcType=INTEGER}, 
-      #{imgPath,jdbcType=VARCHAR}, #{precondition,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{excStep,jdbcType=VARCHAR}, #{expResults,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{apitestCaseid,jdbcType=VARCHAR}, #{unittestCaseid,jdbcType=VARCHAR}, 
-      #{uitestCaseid,jdbcType=VARCHAR}, #{backdevId,jdbcType=BIGINT}, #{relateDemand,jdbcType=VARCHAR}, 
-      #{frontdevId,jdbcType=BIGINT}, #{productmanId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=BIGINT}, #{functionId,jdbcType=BIGINT}, #{level,jdbcType=INTEGER},
+      #{imgPath,jdbcType=VARCHAR}, #{precondition,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{excStep,jdbcType=VARCHAR}, #{expResults,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{apitestCaseid,jdbcType=VARCHAR}, #{unittestCaseid,jdbcType=VARCHAR},
+      #{uitestCaseid,jdbcType=VARCHAR}, #{backdevId,jdbcType=BIGINT}, #{relateDemand,jdbcType=VARCHAR},
+      #{frontdevId,jdbcType=BIGINT}, #{productmanId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
       #{modifiedTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT}
       )
   </insert>
@@ -282,172 +282,4 @@
       modifier_id = #{modifierId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.CaseDetail">
-    <constructor>
-      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="function_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="level" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="img_path" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="precondition" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="exc_step" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="Exp_results" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="remarks" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="apitest_caseid" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="unittest_caseid" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="uitest_caseid" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="backdev_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="relate_demand" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="frontdev_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="productman_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="modified_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="modifier_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-    </constructor>
-  </resultMap>
-  <insert id="insert" parameterType="com.platform.testcase.pojo.CaseDetail">
-    insert into tp_case_casedetail (id, function_id, level, 
-      img_path, precondition, title, 
-      exc_step, Exp_results, remarks, 
-      status, apitest_caseid, unittest_caseid, 
-      uitest_caseid, backdev_id, relate_demand, 
-      frontdev_id, productman_id, create_time, 
-      modified_time, creator_id, modifier_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{functionId,jdbcType=BIGINT}, #{level,jdbcType=INTEGER}, 
-      #{imgPath,jdbcType=VARCHAR}, #{precondition,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{excStep,jdbcType=VARCHAR}, #{expResults,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{apitestCaseid,jdbcType=VARCHAR}, #{unittestCaseid,jdbcType=VARCHAR}, 
-      #{uitestCaseid,jdbcType=VARCHAR}, #{backdevId,jdbcType=BIGINT}, #{relateDemand,jdbcType=VARCHAR}, 
-      #{frontdevId,jdbcType=BIGINT}, #{productmanId,jdbcType=BIGINT}, now(),
-      now(), #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.CaseDetail">
-    insert into tp_case_casedetail
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="functionId != null">
-        function_id,
-      </if>
-      <if test="level != null">
-        level,
-      </if>
-      <if test="imgPath != null">
-        img_path,
-      </if>
-      <if test="precondition != null">
-        precondition,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="excStep != null">
-        exc_step,
-      </if>
-      <if test="expResults != null">
-        Exp_results,
-      </if>
-      <if test="remarks != null">
-        remarks,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="apitestCaseid != null">
-        apitest_caseid,
-      </if>
-      <if test="unittestCaseid != null">
-        unittest_caseid,
-      </if>
-      <if test="uitestCaseid != null">
-        uitest_caseid,
-      </if>
-      <if test="backdevId != null">
-        backdev_id,
-      </if>
-      <if test="relateDemand != null">
-        relate_demand,
-      </if>
-      <if test="frontdevId != null">
-        frontdev_id,
-      </if>
-      <if test="productmanId != null">
-        productman_id,
-      </if>
-        create_time,
-        modified_time,
-      <if test="creatorId != null">
-        creator_id,
-      </if>
-      <if test="modifierId != null">
-        modifier_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="functionId != null">
-        #{functionId,jdbcType=BIGINT},
-      </if>
-      <if test="level != null">
-        #{level,jdbcType=INTEGER},
-      </if>
-      <if test="imgPath != null">
-        #{imgPath,jdbcType=VARCHAR},
-      </if>
-      <if test="precondition != null">
-        #{precondition,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="excStep != null">
-        #{excStep,jdbcType=VARCHAR},
-      </if>
-      <if test="expResults != null">
-        #{expResults,jdbcType=VARCHAR},
-      </if>
-      <if test="remarks != null">
-        #{remarks,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="apitestCaseid != null">
-        #{apitestCaseid,jdbcType=VARCHAR},
-      </if>
-      <if test="unittestCaseid != null">
-        #{unittestCaseid,jdbcType=VARCHAR},
-      </if>
-      <if test="uitestCaseid != null">
-        #{uitestCaseid,jdbcType=VARCHAR},
-      </if>
-      <if test="backdevId != null">
-        #{backdevId,jdbcType=BIGINT},
-      </if>
-      <if test="relateDemand != null">
-        #{relateDemand,jdbcType=VARCHAR},
-      </if>
-      <if test="frontdevId != null">
-        #{frontdevId,jdbcType=BIGINT},
-      </if>
-      <if test="productmanId != null">
-        #{productmanId,jdbcType=BIGINT},
-      </if>
-        now(),
-        now(),
-      <if test="creatorId != null">
-        #{creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="modifierId != null">
-        #{modifierId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
 </mapper>

@@ -116,71 +116,11 @@
       modifier_id = #{modifierId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.Team">
-    <constructor>
-      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="team_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="tester_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="isLeader" javaType="java.lang.Integer" jdbcType="TINYINT" />
-      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="modified_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="modifier_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-    </constructor>
-  </resultMap>
-  <insert id="insert" parameterType="com.platform.testcase.pojo.Team">
-    insert into tp_case_team (id,team_name, tester_id,isLeader, create_time,
-      modified_time, creator_id, modifier_id,
-      )
-    values (#{id,jdbcType=BIGINT}, #{teamName,jdbcType=VARCHAR},#{testerId,jdbcType=BIGINT},#{isLeader,jdbcType=TINYINT},now(),
-      now(), #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Team">
-    insert into tp_case_team
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="teamName != null">
-        team_name,
-      </if>
-      <if test="testerId != null">
-        tester_id,
-      </if>
-      <if test="isLeader != null">
-        isLeader,
-      </if>
-        create_time,
-        modified_time,
-      <if test="creatorId != null">
-        creator_id,
-      </if>
-      <if test="modifierId != null">
-        modifier_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="teamName != null">
-        #{teamName,jdbcType=VARCHAR},
-      </if>
-      <if test="testerId != null">
-        #{testerId,jdbcType=BIGINT},
-      </if>
-      <if test="isLeader != null">
-        #{isLeader,jdbcType=TINYINT},
-      </if>
-        now(),
-        now(),
-      <if test="creatorId != null">
-        #{creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="modifierId != null">
-        #{modifierId,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
+  <select id="isExist" resultType="int" parameterType="String">
+    select count(1)
+    from tp_case_team
+    where team_name = #{teamName}
+  </select>
+
+
 </mapper>

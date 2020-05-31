@@ -14,4 +14,6 @@ public interface TeamMapper {
     int updateByPrimaryKeySelective(Team record);
 
     int updateByPrimaryKey(Team record);
+
+    int isExist(String teamName);
 }

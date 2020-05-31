@@ -20,10 +20,12 @@ public class TeamController {
     ITeamService iTeamService;
 
 
-    @RequestMapping("/add")
+    @RequestMapping("/save")
     @ResponseBody
     public R addTeam(Team team){
-        if (null == team && StringUtils.isBlank(team.getTeamName())  );
+        if (null == team || StringUtils.isBlank(team.getTeamName()) ){
+            return R.error("团队信息或者团队名称不能为空");
+        }
 
         return null;
     }

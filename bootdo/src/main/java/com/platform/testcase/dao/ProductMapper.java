@@ -11,7 +11,7 @@ public interface ProductMapper {
 
     int insertSelective(Product record);
 
-    int getCountByProductName(String ProductName);
+    int isExist (String ProductName);
 
     int save(Product product);
 

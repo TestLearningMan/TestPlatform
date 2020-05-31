@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     id, product_name, productman_id, status, create_time, modified_time, creator_id, modifier_id
   </sql>
-  <select id="getCountByProductName" resultType="int" parameterType="string" >
+  <select id="isExist"  parameterType="String" resultType="int">
     select
     count(1)
     from tp_case_product
@@ -98,7 +98,6 @@
     </set>>
     where id=#{productId}
   </update>
-
   <delete id="delete" parameterType="Long" >
     <if test="productId != null">
       delete
@@ -106,7 +105,6 @@
       where id=#{productId}
     </if>
   </delete>
-
   <delete id="batchDelete" parameterType="map"  >
     <if test="productIdList != null">
       delete
@@ -119,7 +117,6 @@
       </where>
     </if>
   </delete>
-
   <select id="count" resultType="int">
     select count(1)
     from tp_case_product p
@@ -133,7 +130,6 @@
       <if test="productman != null"> and u.name = #{productman} </if>
     </where>
   </select>
-
   <select id="list" resultType="com.platform.testcase.vo.ProductVo" >
     select p.id,p.product_name,p.status,u.productman
     from tp_case_product p

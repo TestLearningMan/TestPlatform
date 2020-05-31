@@ -18,7 +18,7 @@ public class ProductServiceIml implements IProductService {
     ProductMapper productMapper;
 
     public R save(Product product){
-        if (productMapper.getCountByProductName(product.getProductName()) >0){
+        if (productMapper.isExist(product.getProductName()) >0){
             return R.error(-1,"产品名称已存在");
         }
         if (StringUtils.isBlank(product.getId().toString())){

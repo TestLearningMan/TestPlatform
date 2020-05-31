@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.platform.testcase.dao.TeamMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.TeamMember" >
+    <constructor >
+      <idArg column="team_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="tester_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="isLeader" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modified_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    team_id, tester_id, isLeader, create_time, modified_time, creator_id, modifier_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tp_case_team_member
+    where team_id = #{teamId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tp_case_team_member
+    where team_id = #{teamId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.platform.testcase.pojo.TeamMember" >
+    insert into tp_case_team_member (team_id, tester_id, isLeader, 
+      create_time, modified_time, creator_id, 
+      modifier_id)
+    values (#{teamId,jdbcType=BIGINT}, #{testerId,jdbcType=BIGINT}, #{isleader,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
+      #{modifierId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.TeamMember" >
+    insert into tp_case_team_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teamId != null" >
+        team_id,
+      </if>
+      <if test="testerId != null" >
+        tester_id,
+      </if>
+      <if test="isleader != null" >
+        isLeader,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teamId != null" >
+        #{teamId,jdbcType=BIGINT},
+      </if>
+      <if test="testerId != null" >
+        #{testerId,jdbcType=BIGINT},
+      </if>
+      <if test="isleader != null" >
+        #{isleader,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.platform.testcase.pojo.TeamMember" >
+    update tp_case_team_member
+    <set >
+      <if test="testerId != null" >
+        tester_id = #{testerId,jdbcType=BIGINT},
+      </if>
+      <if test="isleader != null" >
+        isLeader = #{isleader,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where team_id = #{teamId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.platform.testcase.pojo.TeamMember" >
+    update tp_case_team_member
+    set tester_id = #{testerId,jdbcType=BIGINT},
+      isLeader = #{isleader,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      modifier_id = #{modifierId,jdbcType=BIGINT}
+    where team_id = #{teamId,jdbcType=BIGINT}
+  </update>
+</mapper>

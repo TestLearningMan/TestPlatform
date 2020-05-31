@@ -1,55 +1,184 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.platform.testcase.dao.TeamMapper" >
-  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.Team" >
-    <constructor >
-      <arg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="tester_id" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="modified_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.testcase.dao.TeamMapper">
+  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.Team">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="team_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="modified_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="modifier_id" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.platform.testcase.pojo.Team" >
-    insert into tp_case_team (id, tester_id, create_time, 
-      modified_time, creator_id, modifier_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{testerId,jdbcType=BIGINT},now(),
-      now(), #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT}
-      )
+  <sql id="Base_Column_List">
+    id, team_name, status, create_time, modified_time, creator_id, modifier_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tp_case_team
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tp_case_team
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.platform.testcase.pojo.Team">
+    insert into tp_case_team (id, team_name, status, 
+      create_time, modified_time, creator_id, 
+      modifier_id)
+    values (#{id,jdbcType=BIGINT}, #{teamName,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
+      #{modifierId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Team" >
+  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Team">
     insert into tp_case_team
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="testerId != null" >
-        tester_id,
+      <if test="teamName != null">
+        team_name,
       </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
         create_time,
+      </if>
+      <if test="modifiedTime != null">
         modified_time,
-      <if test="creatorId != null" >
+      </if>
+      <if test="creatorId != null">
         creator_id,
       </if>
-      <if test="modifierId != null" >
+      <if test="modifierId != null">
         modifier_id,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="testerId != null" >
-        #{testerId,jdbcType=BIGINT},
+      <if test="teamName != null">
+        #{teamName,jdbcType=VARCHAR},
       </if>
-        now(),
-        now(),
-      <if test="creatorId != null" >
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
         #{creatorId,jdbcType=BIGINT},
       </if>
-      <if test="modifierId != null" >
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.platform.testcase.pojo.Team">
+    update tp_case_team
+    <set>
+      <if test="teamName != null">
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="modifierId != null">
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.platform.testcase.pojo.Team">
+    update tp_case_team
+    set team_name = #{teamName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      modifier_id = #{modifierId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.Team">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="team_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tester_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="isLeader" javaType="java.lang.Integer" jdbcType="TINYINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="modified_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="modifier_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.platform.testcase.pojo.Team">
+    insert into tp_case_team (id,team_name, tester_id,isLeader, create_time,
+      modified_time, creator_id, modifier_id,
+      )
+    values (#{id,jdbcType=BIGINT}, #{teamName,jdbcType=VARCHAR},#{testerId,jdbcType=BIGINT},#{isLeader,jdbcType=TINYINT},now(),
+      now(), #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Team">
+    insert into tp_case_team
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teamName != null">
+        team_name,
+      </if>
+      <if test="testerId != null">
+        tester_id,
+      </if>
+      <if test="isLeader != null">
+        isLeader,
+      </if>
+        create_time,
+        modified_time,
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="modifierId != null">
+        modifier_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="teamName != null">
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="testerId != null">
+        #{testerId,jdbcType=BIGINT},
+      </if>
+      <if test="isLeader != null">
+        #{isLeader,jdbcType=TINYINT},
+      </if>
+        now(),
+        now(),
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="modifierId != null">
         #{modifierId,jdbcType=BIGINT},
       </if>
     </trim>

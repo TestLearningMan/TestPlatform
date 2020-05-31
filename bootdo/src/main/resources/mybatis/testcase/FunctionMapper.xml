@@ -1,19 +1,145 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.platform.testcase.dao.FunctionMapper" >
-  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.Function" >
-    <constructor >
-      <arg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="function_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="parent_id" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="modified_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="creator_id" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="modifier_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.testcase.dao.FunctionMapper">
+  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.Function">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="function_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="parent_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="modified_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="modifier_id" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
-  <insert id="insert" parameterType="com.platform.testcase.pojo.Function" >
+  <sql id="Base_Column_List">
+    id, function_name, parent_id, status, create_time, modified_time, creator_id, modifier_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tp_case_function
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tp_case_function
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.platform.testcase.pojo.Function">
+    insert into tp_case_function (id, function_name, parent_id, 
+      status, create_time, modified_time, 
+      creator_id, modifier_id)
+    values (#{id,jdbcType=BIGINT}, #{functionName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Function">
+    insert into tp_case_function
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="functionName != null">
+        function_name,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="modifierId != null">
+        modifier_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="functionName != null">
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.platform.testcase.pojo.Function">
+    update tp_case_function
+    <set>
+      <if test="functionName != null">
+        function_name = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="modifierId != null">
+        modifier_id = #{modifierId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.platform.testcase.pojo.Function">
+    update tp_case_function
+    set function_name = #{functionName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      modifier_id = #{modifierId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.platform.testcase.pojo.Function">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="function_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="parent_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="modified_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="modifier_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.platform.testcase.pojo.Function">
     insert into tp_case_function (id, function_name, parent_id, 
       status, create_time, modified_time, 
       creator_id, modifier_id)
@@ -21,49 +147,49 @@
       #{status,jdbcType=INTEGER},now(),now(),
       #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Function" >
+  <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Function">
     insert into tp_case_function
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="functionName != null" >
+      <if test="functionName != null">
         function_name,
       </if>
-      <if test="parentId != null" >
+      <if test="parentId != null">
         parent_id,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status,
       </if>
         create_time,
         modified_time,
-      <if test="creatorId != null" >
+      <if test="creatorId != null">
         creator_id,
       </if>
-      <if test="modifierId != null" >
+      <if test="modifierId != null">
         modifier_id,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="functionName != null" >
+      <if test="functionName != null">
         #{functionName,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null" >
+      <if test="parentId != null">
         #{parentId,jdbcType=BIGINT},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
         now(),
         now(),
-      <if test="creatorId != null" >
+      <if test="creatorId != null">
         #{creatorId,jdbcType=BIGINT},
       </if>
-      <if test="modifierId != null" >
+      <if test="modifierId != null">
         #{modifierId,jdbcType=BIGINT},
       </if>
     </trim>

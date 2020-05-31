@@ -2,12 +2,12 @@ package com.platform.testcase.pojo;
 
 import java.util.Date;
 
-public class Team {
-    private Long id;
+public class TeamMember {
+    private Long teamId;
 
-    private String teamName;
+    private Long testerId;
 
-    private Boolean status;
+    private Boolean isleader;
 
     private Date createTime;
 
@@ -17,42 +17,42 @@ public class Team {
 
     private Long modifierId;
 
-    public Team(Long id, String teamName, Boolean status, Date createTime, Date modifiedTime, Long creatorId, Long modifierId) {
-        this.id = id;
-        this.teamName = teamName;
-        this.status = status;
+    public TeamMember(Long teamId, Long testerId, Boolean isleader, Date createTime, Date modifiedTime, Long creatorId, Long modifierId) {
+        this.teamId = teamId;
+        this.testerId = testerId;
+        this.isleader = isleader;
         this.createTime = createTime;
         this.modifiedTime = modifiedTime;
         this.creatorId = creatorId;
         this.modifierId = modifierId;
     }
 
-    public Team() {
+    public TeamMember() {
         super();
     }
 
-    public Long getId() {
-        return id;
+    public Long getTeamId() {
+        return teamId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public Long getTesterId() {
+        return testerId;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName == null ? null : teamName.trim();
+    public void setTesterId(Long testerId) {
+        this.testerId = testerId;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getIsleader() {
+        return isleader;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsleader(Boolean isleader) {
+        this.isleader = isleader;
     }
 
     public Date getCreateTime() {

@@ -1,25 +1,19 @@
 package com.platform.testcase.dao;
 
 import com.platform.testcase.pojo.Product;
-import com.platform.testcase.vo.ProductVo;
-
-import java.util.List;
-import java.util.Map;
 
 public interface ProductMapper {
+    int deleteByPrimaryKey(Long id);
+
     int insert(Product record);
 
     int insertSelective(Product record);
 
-    int getCountByProductName(String ProductName);
+    Product selectByPrimaryKey(Long id);
 
-    int save(Product product);
+    int updateByPrimaryKeySelective(Product record);
 
-    int delete(Long id);
+    int updateByPrimaryKey(Product record);
 
-    int batchDelete(List<String> productIdList);
 
-    int count(Map<String,Object> map);
-
-    List<ProductVo> list(Map<String,Object> query);
 }

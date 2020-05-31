@@ -7,15 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.bootdo.common.utils.*;
-
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 
 @RequestMapping("/testplatform/product")
 @Controller
-public class TestCaseController {
+public class ProductController {
 
     @Autowired
     IProductService iProductService;
@@ -23,7 +21,7 @@ public class TestCaseController {
     @RequestMapping(value = "/save.do",method = RequestMethod.POST)
     @ResponseBody
     public R AddProduct(Product product){
-        if (StringUtils.isBlank(product.getProductName())){
+        if (null ==product || StringUtils.isBlank(product.getProductName())){
             return R.error(-1,"产品名称不能为空");
         }
         return iProductService.save(product);

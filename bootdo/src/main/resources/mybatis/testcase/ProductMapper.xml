@@ -14,10 +14,10 @@
     </constructor>
   </resultMap>
   <insert id="insert" parameterType="com.platform.testcase.pojo.Product" >
-    insert into tp_case_product (id, product_name, productman_id, 
-      status, create_time, modified_time, 
+    insert into tp_case_product (id, product_name, productman_id,
+      status, create_time, modified_time,
       creator_id, modifier_id)
-    values (#{id,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, #{productmanId,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, #{productmanId,jdbcType=BIGINT},
       #{status,jdbcType=INTEGER},now(),now(),
       #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT})
   </insert>
@@ -36,8 +36,8 @@
       <if test="status != null" >
         status,
       </if>
-        create_time,
-        modified_time,
+      create_time,
+      modified_time,
       <if test="creatorId != null" >
         creator_id,
       </if>
@@ -58,8 +58,8 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-        now(),
-        now(),
+      now(),
+      now(),
       <if test="creatorId != null" >
         #{creatorId,jdbcType=BIGINT},
       </if>
@@ -81,19 +81,19 @@
     update
     tp_case_product
     <set>
-        <if test="productName != null">
-            product_name=#{productName}
-        </if>
-        <if test="productmanId != null">
-            productman_id=#{productmanId}
-        </if>
-        <if test="status != null">
-            status=#{status}
-        </if>
-            modified_time=now()
-        <if test="modifierId !=null">
-            modifier_id = #{modifierId}
-        </if>
+      <if test="productName != null">
+        product_name=#{productName}
+      </if>
+      <if test="productmanId != null">
+        productman_id=#{productmanId}
+      </if>
+      <if test="status != null">
+        status=#{status}
+      </if>
+      modified_time=now()
+      <if test="modifierId !=null">
+        modifier_id = #{modifierId}
+      </if>
 
     </set>>
     where id=#{productId}
@@ -101,22 +101,22 @@
 
   <delete id="delete" parameterType="Long" >
     <if test="productId != null">
-    delete
-    from tp_case_product
-    where id=#{productId}
+      delete
+      from tp_case_product
+      where id=#{productId}
     </if>
   </delete>
 
   <delete id="batchDelete" parameterType="map"  >
     <if test="productIdList != null">
-    delete
-    from tp_case_product
-    <where>
-    id in
-    <foreach collection="productIdList" separator="," open="(" close=")" index="incex" item="item">
-      #{item}
-    </foreach>
-    </where>
+      delete
+      from tp_case_product
+      <where>
+        id in
+        <foreach collection="productIdList" separator="," open="(" close=")" index="incex" item="item">
+          #{item}
+        </foreach>
+      </where>
     </if>
   </delete>
 
@@ -126,28 +126,28 @@
     inner join (select id,name from t_platform_user) u
     on p.productman_id = u.id
     <where>
-        <if test="productName != null ">
-            and p.product_name = #{productName}
-        </if>
-        <if test="status != null"> and p.status = #{status} </if>
-        <if test="productman != null"> and u.name = #{productman} </if>
+      <if test="productName != null ">
+        and p.product_name = #{productName}
+      </if>
+      <if test="status != null"> and p.status = #{status} </if>
+      <if test="productman != null"> and u.name = #{productman} </if>
     </where>
   </select>
-  
+
   <select id="list" resultType="com.platform.testcase.vo.ProductVo" >
     select p.id,p.product_name,p.status,u.productman
     from tp_case_product p
     inner join (select id,`name` productman from t_platform_user ) u
-     on p.productman_id = u.id
-     <where>
-       <if  test="id != null">and p.id = #{id} </if>
-       <if  test="productman != null">and u.productman_id = #{productmanId}</if>
-       <if  test="status != null">and p.status = #{status} </if>
-     </where>
-     order by p.product_name
-     <if  test="offset != null and limit != null" >
-        limit #{offset},#{limit}
-     </if>
+    on p.productman_id = u.id
+    <where>
+      <if  test="id != null">and p.id = #{id} </if>
+      <if  test="productman != null">and u.productman_id = #{productmanId}</if>
+      <if  test="status != null">and p.status = #{status} </if>
+    </where>
+    order by p.product_name
+    <if  test="offset != null and limit != null" >
+      limit #{offset},#{limit}
+    </if>
   </select>
 
 

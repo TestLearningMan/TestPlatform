@@ -4,6 +4,7 @@ import com.google.common.base.Splitter;
 import com.platform.testcase.dao.ProductMapper;
 import com.platform.testcase.pojo.Product;
 import com.platform.testcase.service.IProductService;
+import com.platform.testcase.utils.IdGenerator;
 import com.platform.testcase.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class ProductServiceIml implements IProductService {
             return R.error(-1,"产品名称已存在");
         }
         if (StringUtils.isBlank(product.getId().toString())){
+            product.setId(IdGenerator.getId());
             product.setStatus(1);
             product.setCreatorId(ShiroUtils.getUserId());
             product.setModifierId(ShiroUtils.getUserId());

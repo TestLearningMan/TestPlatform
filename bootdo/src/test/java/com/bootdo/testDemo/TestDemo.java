@@ -28,8 +28,7 @@ public class TestDemo {
 
     @Test
     public void test() {
-        LinkedHashMap<String,Object> map = new LinkedHashMap();
-
+        int random = (int)((Math.random()+8)*Math.pow(10, Math.random()*10));
     }
 
     @Test

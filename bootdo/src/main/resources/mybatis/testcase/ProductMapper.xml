@@ -105,13 +105,13 @@
       where id=#{productId}
     </if>
   </delete>
-  <delete id="batchDelete" parameterType="map"  >
+  <delete id="batchDelete" parameterType="java.util.List"  >
     <if test="productIdList != null">
       delete
       from tp_case_product
       <where>
         id in
-        <foreach collection="productIdList" separator="," open="(" close=")" index="incex" item="item">
+        <foreach collection="productIdList" separator="," open="(" close=")" index="index" item="item">
           #{item}
         </foreach>
       </where>

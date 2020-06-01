@@ -55,8 +55,8 @@
       #{excStep,jdbcType=VARCHAR}, #{expResults,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},
       #{status,jdbcType=INTEGER}, #{apitestCaseid,jdbcType=VARCHAR}, #{unittestCaseid,jdbcType=VARCHAR},
       #{uitestCaseid,jdbcType=VARCHAR}, #{backdevId,jdbcType=BIGINT}, #{relateDemand,jdbcType=VARCHAR},
-      #{frontdevId,jdbcType=BIGINT}, #{productmanId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
-      #{modifiedTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT}
+      #{frontdevId,jdbcType=BIGINT}, #{productmanId,jdbcType=BIGINT}, now(),
+      now(), #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.platform.testcase.pojo.CaseDetail">
@@ -113,12 +113,8 @@
       <if test="productmanId != null">
         productman_id,
       </if>
-      <if test="createTime != null">
         create_time,
-      </if>
-      <if test="modifiedTime != null">
         modified_time,
-      </if>
       <if test="creatorId != null">
         creator_id,
       </if>
@@ -178,12 +174,8 @@
       <if test="productmanId != null">
         #{productmanId,jdbcType=BIGINT},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifiedTime != null">
-        #{modifiedTime,jdbcType=TIMESTAMP},
-      </if>
+      now(),
+      now(),
       <if test="creatorId != null">
         #{creatorId,jdbcType=BIGINT},
       </if>
@@ -243,12 +235,7 @@
       <if test="productmanId != null">
         productman_id = #{productmanId,jdbcType=BIGINT},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifiedTime != null">
-        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
-      </if>
+      now,
       <if test="creatorId != null">
         creator_id = #{creatorId,jdbcType=BIGINT},
       </if>
@@ -276,8 +263,7 @@
       relate_demand = #{relateDemand,jdbcType=VARCHAR},
       frontdev_id = #{frontdevId,jdbcType=BIGINT},
       productman_id = #{productmanId,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      modified_time = now(),
       creator_id = #{creatorId,jdbcType=BIGINT},
       modifier_id = #{modifierId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}

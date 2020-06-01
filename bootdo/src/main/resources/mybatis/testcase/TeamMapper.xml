@@ -121,6 +121,50 @@
     from tp_case_team
     where team_name = #{teamName}
   </select>
-
+  <delete id="delete" parameterType="java.util.List">
+    <if test="idList != null">
+        delete from tp_case_team
+        <where>
+            id in
+                <foreach collection="idList" separator="," close=")" open="("  index="index" item="item">
+                  #{item}
+                </foreach>
+        </where>
+    </if>
+  </delete>
+  <select id="count" parameterType="java.util.Map">
+    select count(1)
+    from tp_case_team
+    <where>
+      <if test="id != null">
+        id = #{id},
+      </if>
+      <if test="teamName != null" >
+        team_name = #{teamName},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+    </where>
+  </select>
+  <select id="list" parameterType="java.util.Map" resultType="com.platform.testcase.vo.TeamVo">
+    select id,team_name,status
+    from tp_case_team
+    <where>
+      <if test="id !=null">
+        id = #{id},
+      </if>
+      <if test="teamName != null">
+        team_name = #{teamName},
+      </if>
+      <if test="status">
+        status = #{status},
+      </if>
+      order by team_name
+      <if test="limit != null and offset != null" >
+      limit #{limit},#{offset}
+      </if>
+    </where>
+  </select>
 
 </mapper>

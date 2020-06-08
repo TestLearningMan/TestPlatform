@@ -12,4 +12,6 @@ public interface ITeamService {
     public R delete(String ids);
     public int count(Map<String,Object> map);
     public List<TeamVo> list(Map<String,Object> map);
+    public R forbidden(List<Long> lists,int type);
+
 }

@@ -23,5 +23,9 @@ public interface ProductMapper {
 
     List<ProductVo> list(Map<String,Object> query);
 
+    int disable(List<Long> lists);
+
+    int enable(List<Long> lists);
+
 
 }

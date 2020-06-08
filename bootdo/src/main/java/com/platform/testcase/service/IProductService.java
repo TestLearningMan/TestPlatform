@@ -14,4 +14,5 @@ public interface IProductService {
     public R batchDelete(String productIds);
     public List<ProductVo> list(Map<String,Object> query);
     public int count(Map<String,Object> map);
+    public R forbidden(List<Long> lists,int type);
 }

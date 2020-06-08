@@ -1,7 +1,9 @@
 package com.platform.testcase.controller;
 
+import com.google.common.base.Splitter;
 import com.platform.testcase.pojo.Product;
 import com.platform.testcase.service.IProductService;
+import com.platform.testcase.utils.BaseTypeUtils;
 import com.platform.testcase.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,7 @@ public class ProductController {
         return iProductService.delete(id);
     }
 
-    @RequestMapping(value = "/batchDelete")
+    @RequestMapping(value = "/batchDelete.do")
     @ResponseBody
     public R batchDelete(String productIds){
         if (StringUtils.isBlank(productIds)){
@@ -45,7 +47,7 @@ public class ProductController {
         return iProductService.batchDelete(productIds);
     }
 
-    @RequestMapping(value = "/list")
+    @RequestMapping(value = "/list.do")
     @ResponseBody
     public R list(@RequestParam Map<String,Object> map){
         Object limit = map.get("limit");
@@ -61,6 +63,14 @@ public class ProductController {
         R r = new R();
         r.put("pageUtils",pageUtils);
         return r;
+    }
+
+    @RequestMapping("/forbidden.do")
+    @ResponseBody
+    public R forbidden(String ids,int type){
+        List<String> idList = Splitter.on(",").splitToList(ids);
+        List<Long> lists = BaseTypeUtils.StrtoLong(idList);
+        return iProductService.forbidden(lists,type);
     }
 
 }

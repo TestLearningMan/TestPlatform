@@ -166,5 +166,27 @@
       </if>
     </where>
   </select>
+  <update id="disable" parameterType="java.util.List">
+    update tp_case_team
+      set status = 0
+    where
+      <if test="lists != null">
+        id in
+        <foreach collection="lists" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+        </foreach>
+      </if>
+  </update>
+  <update id="enable" parameterType="java.util.List">
+    update tp_case_team
+    set status = 1
+    where
+    <if test="lists != null">
+      id in
+      <foreach collection="lists" item="item" index="index" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </if>
+  </update>
 
 </mapper>

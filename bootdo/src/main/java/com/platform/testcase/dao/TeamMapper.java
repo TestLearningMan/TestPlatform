@@ -27,4 +27,7 @@ public interface TeamMapper {
 
     List<TeamVo> list(Map<String,Object> map);
 
+    int disable(List<Long> lists);
+
+    int enable(List<Long> lists);
 }

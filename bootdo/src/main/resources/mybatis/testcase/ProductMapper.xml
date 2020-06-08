@@ -145,6 +145,28 @@
       limit #{offset},#{limit}
     </if>
   </select>
+  <update id="disable" parameterType="java.util.List">
+    update tp_case_product
+    set status = 0
+    where
+    <if test="lists != null">
+      id in
+      <foreach collection="lists" separator="," close=")" open="(" index="index" item="item">
+        #{item}
+      </foreach>
+    </if>
+  </update>
+  <update id="enable" parameterType="java.util.List">
+    update tp_case_product
+    set status = 1
+    where
+    <if test="lists != null">
+      id in
+      <foreach collection="lists" separator="," close=")" open="(" index="index" item="item">
+        #{item}
+      </foreach>
+    </if>
+  </update>
 
 
 </mapper>

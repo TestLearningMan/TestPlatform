@@ -52,15 +52,15 @@ public class TeamController {
     @RequestMapping("/list")
     @ResponseBody
     public R List(Map<String,Object> param){
-        Object limit = param.get("limit.do");
+        Object limit = param.get("limit");
         if (null == limit || StringUtils.isBlank(limit.toString())){
-            return R.error("页数不能为空");
+            return R.error("每页行数不能为空");
         }
         Query query = new Query(param);
         PageUtils pageUtils = new PageUtils(
                 iTeamService.list(query),iTeamService.count(query));
         R result = new R();
-        result.put("pageUtils",pageUtils);
+        result.put("data",pageUtils);
         return result;
     }
 

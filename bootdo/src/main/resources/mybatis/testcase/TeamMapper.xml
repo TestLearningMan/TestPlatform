@@ -29,9 +29,8 @@
     insert into tp_case_team (id, team_name, status, 
       create_time, modified_time, creator_id, 
       modifier_id)
-    values (#{id,jdbcType=BIGINT}, #{teamName,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
-      #{modifierId,jdbcType=BIGINT})
+    values (#{id,jdbcType=BIGINT}, #{teamName,jdbcType=VARCHAR}, #{status,jdbcType=BIT},
+    now(),now(), #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Team">
     insert into tp_case_team
@@ -68,12 +67,8 @@
       <if test="status != null">
         #{status,jdbcType=BIT},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifiedTime != null">
-        #{modifiedTime,jdbcType=TIMESTAMP},
-      </if>
+      now(),
+      now(),
       <if test="creatorId != null">
         #{creatorId,jdbcType=BIGINT},
       </if>
@@ -94,9 +89,7 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="modifiedTime != null">
-        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
-      </if>
+      now(),
       <if test="creatorId != null">
         creator_id = #{creatorId,jdbcType=BIGINT},
       </if>
@@ -111,7 +104,7 @@
     set team_name = #{teamName,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      modified_time = now(),
       creator_id = #{creatorId,jdbcType=BIGINT},
       modifier_id = #{modifierId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
@@ -135,36 +128,36 @@
   <select id="count" parameterType="java.util.Map">
     select count(1)
     from tp_case_team
-    <where>
+    <trim prefix="where" suffixOverrides="and">
       <if test="id != null">
-        id = #{id},
+        id = #{id} and
       </if>
       <if test="teamName != null" >
-        team_name = #{teamName},
+        team_name = #{teamName} and
       </if>
       <if test="status != null">
-        status = #{status},
+        status = #{status} and
       </if>
-    </where>
+    </trim>
   </select>
   <select id="list" parameterType="java.util.Map" resultType="com.platform.testcase.vo.TeamVo">
     select id,team_name,status
     from tp_case_team
-    <where>
+    <trim prefix="where" suffixOverrides="and">
       <if test="id !=null">
-        id = #{id},
+        id = #{id} and
       </if>
       <if test="teamName != null">
-        team_name = #{teamName},
+        team_name = #{teamName} and
       </if>
       <if test="status">
-        status = #{status},
+        status = #{status} and
       </if>
       order by team_name
       <if test="limit != null and offset != null" >
       limit #{limit},#{offset}
       </if>
-    </where>
+    </trim>
   </select>
   <update id="disable" parameterType="java.util.List">
     update tp_case_team

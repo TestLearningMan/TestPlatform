@@ -80,22 +80,21 @@
   <update id="save" parameterType="com.platform.testcase.pojo.Product">
     update
     tp_case_product
-    <set>
+    <trim prefix="set" >
       <if test="productName != null">
-        product_name=#{productName}
+        product_name=#{productName},
       </if>
       <if test="productmanId != null">
-        productman_id=#{productmanId}
+        productman_id=#{productmanId},
       </if>
       <if test="status != null">
-        status=#{status}
+        status=#{status},
       </if>
-      modified_time=now()
+      modified_time=now(),
       <if test="modifierId !=null">
         modifier_id = #{modifierId}
       </if>
-
-    </set>>
+    </trim>
     where id=#{productId}
   </update>
   <delete id="delete" parameterType="Long" >
@@ -122,24 +121,24 @@
     from tp_case_product p
     inner join (select id,name from t_platform_user) u
     on p.productman_id = u.id
-    <where>
+    <trim prefix="where" prefixOverrides="and">
       <if test="productName != null ">
         and p.product_name = #{productName}
       </if>
       <if test="status != null"> and p.status = #{status} </if>
       <if test="productman != null"> and u.name = #{productman} </if>
-    </where>
+    </trim>
   </select>
   <select id="list" resultType="com.platform.testcase.vo.ProductVo" >
     select p.id,p.product_name,p.status,u.productman
     from tp_case_product p
     inner join (select id,`name` productman from t_platform_user ) u
     on p.productman_id = u.id
-    <where>
+    <trim prefix="where" prefixOverrides="and">
       <if  test="id != null">and p.id = #{id} </if>
       <if  test="productman != null">and u.productman_id = #{productmanId}</if>
       <if  test="status != null">and p.status = #{status} </if>
-    </where>
+    </trim>
     order by p.product_name
     <if  test="offset != null and limit != null" >
       limit #{offset},#{limit}
@@ -167,6 +166,5 @@
       </foreach>
     </if>
   </update>
-
 
 </mapper>

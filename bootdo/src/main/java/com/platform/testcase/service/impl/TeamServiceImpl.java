@@ -40,23 +40,21 @@ public class TeamServiceImpl implements ITeamService {
         }
         return R.error("团队新增失败");
     }
-
     public R delete(String ids){
         List<String> idList = Splitter.on(ids).splitToList(",");
         int result = teamMapper.delete(idList);
         if (result > 0){
-            return R.ok("团队删除成功");
+            StringBuilder builder = new StringBuilder();
+            return R.ok(builder.append("已成功删除团队 ").append(result).append("个").toString());
         }
         return R.error("团队删除失败");
     }
-
     public int count(Map<String,Object> map){
         return teamMapper.count(map);
     }
-    public List<TeamVo> list(Map<String,Object> map){
+    public List<TeamVo> list(Map<java.lang.String,Object> map){
         return teamMapper.list(map);
     }
-
     public R forbidden(List<Long> lists,int type){
         int result = 0;
         //禁用/启用调用不同的方法

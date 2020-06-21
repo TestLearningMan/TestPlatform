@@ -61,7 +61,7 @@ public class ProductController {
         PageUtils pageUtils = new PageUtils(productVoLinkedHashMap,
                 total);
         R r = new R();
-        r.put("pageUtils",pageUtils);
+        r.put("data",pageUtils);
         return r;
     }
 

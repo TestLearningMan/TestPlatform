@@ -71,7 +71,7 @@ public class TeamController {
             return R.error("请选择需要禁用/启用的团队");
         }
         List idList = Splitter.on(",").splitToList(ids);
-        List<Long> lists = BaseTypeUtils.StrtoLong(idList);
+        List<Long> lists = BaseTypeUtils.strToLong(idList);
         return iTeamService.forbidden(lists,type);
     }
 

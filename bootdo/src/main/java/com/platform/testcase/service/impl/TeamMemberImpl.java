@@ -20,12 +20,18 @@ public class TeamMemberImpl implements ITeamMember {
     @Autowired
     TeamMemberMapper teamMemberMapper;
 
+    @Autowired
+    TeamMapper teamMapper;
     public R add(TeamMember member){
-        int result = teamMemberMapper.insertSelective(member);
-        if (result >0){
-            return R.ok("团队成员新增成功");
+        //如果团队存在，则插入团队成员
+        if (teamMapper.selectByPrimaryKey(member.getTeamId()) !=null){
+            int result = teamMemberMapper.insertSelective(member);
+            if (result >0){
+                return R.ok("团队成员新增成功");
+            }
+            return R.error("团队成员新增失败");
         }
-        return R.error("团队成员新增失败");
+        return R.error("请重新选择团队后再新增团队成员");
     }
 
     public R update(TeamMember member){

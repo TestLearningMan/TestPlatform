@@ -31,7 +31,5 @@ public class TestDemo {
         int random = (int)((Math.random()+8)*Math.pow(10, Math.random()*10));
     }
 
-    @Test
-    public void test3() {
-    }
+
 }

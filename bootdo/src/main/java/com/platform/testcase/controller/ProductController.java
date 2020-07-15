@@ -69,7 +69,7 @@ public class ProductController {
     @ResponseBody
     public R forbidden(String ids,int type){
         List<String> idList = Splitter.on(",").splitToList(ids);
-        List<Long> lists = BaseTypeUtils.StrtoLong(idList);
+        List<Long> lists = BaseTypeUtils.strToLong(idList);
         return iProductService.forbidden(lists,type);
     }
 

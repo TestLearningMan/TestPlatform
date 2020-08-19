@@ -19,6 +19,16 @@ public class Function {
 
     private Long modifierId;
 
+    private Long productId;
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
     public Function(Long id, String functionName, Long parentId, Integer status, Date createTime, Date modifiedTime, Long creatorId, Long modifierId) {
         this.id = id;
         this.functionName = functionName;

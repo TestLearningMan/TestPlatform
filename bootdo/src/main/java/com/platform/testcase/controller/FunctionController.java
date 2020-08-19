@@ -1,5 +1,6 @@
 package com.platform.testcase.controller;
 
+import com.bootdo.common.utils.Query;
 import com.bootdo.common.utils.R;
 import com.bootdo.common.utils.ShiroUtils;
 import com.google.common.base.Splitter;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.platform.testcase.utils.BaseTypeUtils.strToLong;
 
@@ -42,14 +44,16 @@ public class FunctionController {
         List<Long> idList = strToLong(list);
         return functionService.delete(idList);
     }
-    public R forbidden(String ids,int type){
-        if (StringUtils.isBlank(ids)){
-            return R.error("请选择需要删除的功能");
+    public R forbidden(Map<String,Object> map){
+        if (null == map.get("ids") || StringUtils.isBlank(map.get("ids").toString())){
+            return R.error("请选择需要禁用/启用的功能");
         }
-        List<String> list = Splitter.on(",").splitToList(ids);
-        List<Long> idList = strToLong(list);
-        return functionService.forbidden(idList,type);
+        return R.ok();
     }
-
-
+    public R list(Map<String,Object> map){
+        List<Function> lists = functionService.list(map);
+        R r = new R();
+        r.put("data",lists);
+        return r;
+    }
 }

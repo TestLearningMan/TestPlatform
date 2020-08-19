@@ -7,6 +7,7 @@
       <arg column="function_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="parent_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="product_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="modified_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
@@ -14,7 +15,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, function_name, parent_id, status, create_time, modified_time, creator_id, modifier_id
+    id, function_name, parent_id, status, product_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -28,10 +29,10 @@
   </delete>
   <insert id="insert" parameterType="com.platform.testcase.pojo.Function">
     insert into tp_case_function (id, function_name, parent_id, 
-      status, create_time, modified_time, 
+      status, product_id, create_time, modified_time,
       creator_id, modifier_id)
     values (#{id,jdbcType=BIGINT}, #{functionName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{productId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP},
       #{creatorId,jdbcType=BIGINT}, #{modifierId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.platform.testcase.pojo.Function">
@@ -48,6 +49,9 @@
       </if>
       <if test="status != null">
         status,
+      </if>
+      <if test="productId != null">
+        product_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -75,6 +79,9 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -101,6 +108,9 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="productId != null">
+        product_id =#{productId,jdbcType=BIGINT},
+      </if>
       <if test="modifierId != null">
         modifier_id = #{modifierId,jdbcType=BIGINT},
       </if>
@@ -113,6 +123,7 @@
     set function_name = #{functionName,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
       status = #{status,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=BIGINT},
       modified_time = now(),
       modifier_id = #{modifierId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
@@ -133,7 +144,7 @@
     </trim>
     </if>
   </delete>
-  <update id="enable" parameterType="java.util.List">
+  <!--  <update id="enable" parameterType="java.util.List">
     update tp_case_function
     set status = 1
     where id in
@@ -142,8 +153,8 @@
         #{item}
       </foreach>
     </if>
-  </update>
-  <update id="disable" parameterType="java.util.List">
+  </update>-->
+  <!--<update id="disable" parameterType="java.util.List">
     update tp_case_function
     set status = 0
     where id in
@@ -152,6 +163,36 @@
         #{item}
       </foreach>
     </if>
-  </update>
+  </update> -->
+  <update id="forbidden" parameterType="java.util.List">
+    update tp_case_function
+    <if test="status == 1">
+      set status = #{status}
+      where FIND_IN_SET(id,getChiListById(#{ids},0))
+    </if>
+    <if test="status ==0 ">
+      set status = #{status}
+      where FIND_IN_SET(id,getChiListById(#{ids},1))
+    </if>
 
+  </update>
+  <select id="list" parameterType="java.util.Map" resultType="com.platform.testcase.pojo.Function">
+    select
+    <include refid="Base_Column_List" />
+    from tp_case_function
+    <trim prefix="where" prefixOverrides="and">
+      <if test="id != null">
+            id = #{id}
+      </if>
+      <if test="functionName != null ">
+        and function_name = #{functionName}
+      </if>
+      <if test="status != null">
+        and status = #{status}
+      </if>
+      <if test="productId != null">
+        and product_id = #{productId,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </select>
 </mapper>

@@ -1,8 +1,10 @@
 package com.platform.testcase.dao;
 
+import com.platform.testcase.pojo.CaseDetail;
 import com.platform.testcase.pojo.Function;
 
 import java.util.List;
+import java.util.Map;
 
 public interface FunctionMapper {
     int deleteByPrimaryKey(Long id);
@@ -21,8 +23,9 @@ public interface FunctionMapper {
 
     int delete(List<Long> idList);
 
-    int enable(List<Long> idList);
+    int forbidden(Map<String,Object> map);
 
-    int disable(List<Long> idList);
+    List<Function> list(Map<String, Object> map);
 
+    int exist(CaseDetail caseDetail);
 }

@@ -8,6 +8,7 @@ import com.platform.testcase.utils.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FunctionServiceImpl implements IFunctionService {
@@ -39,23 +40,11 @@ public class FunctionServiceImpl implements IFunctionService {
         }
         return R.ok("成功删除"+result+"条功能");
     }
-    public R forbidden(List<Long> idList,int type){
-        int result = 0;
-        if (type ==1){
-            //type =1,则启用
-            result = functionMapper.enable(idList);
-        }
-        if(type ==0){
-            //type = 0 ,则禁用
-            result = functionMapper.disable(idList);
-        }
-        if (result == 0){
-            return R.ok("功能禁用/启用失败");
-        }
-        String str = new StringBuilder().append("功能禁用/启用成功").append(result)
-                .append("条").toString();
-        return R.ok(str);
-
-
+    public void forbidden(Map<String,Object> map){
+        functionMapper.forbidden(map);
+    }
+    public List<Function> list(Map<String,Object> map){
+        List<Function> lists= functionMapper.list(map);
+        return lists;
     }
 }

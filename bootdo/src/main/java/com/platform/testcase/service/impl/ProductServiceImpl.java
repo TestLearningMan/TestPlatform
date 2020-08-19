@@ -57,6 +57,7 @@ public class ProductServiceImpl implements IProductService {
         if (productIdList.size() == 0){
             return R.error("请刷新页面，重新选择要删除的产品");
         }
+
         int result=productMapper.batchDelete(productIdList);
         if (result > 0){
             return R.ok("批量删除产品成功");}

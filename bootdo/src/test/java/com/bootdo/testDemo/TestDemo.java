@@ -2,6 +2,7 @@ package com.bootdo.testDemo;
 
 import com.bootdo.activiti.dao.CustomActivitiesDao;
 import com.bootdo.activiti.domain.CustomActivitiesDO;
+import com.platform.testcase.pojo.CaseDetail;
 import net.bytebuddy.asm.Advice;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.TaskService;
@@ -31,5 +32,9 @@ public class TestDemo {
         int random = (int)((Math.random()+8)*Math.pow(10, Math.random()*10));
     }
 
+    @Test
+    public void returnTest(){
+        CaseDetail caseDetail = new CaseDetail();
+    }
 
 }

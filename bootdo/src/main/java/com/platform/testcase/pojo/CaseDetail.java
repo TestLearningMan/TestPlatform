@@ -5,6 +5,8 @@ import java.util.Date;
 public class CaseDetail {
     private Long id;
 
+    private Long product_id;
+
     private Long functionId;
 
     private Integer level;
@@ -45,28 +47,22 @@ public class CaseDetail {
 
     private Long modifierId;
 
-    public CaseDetail(Long id, Long functionId, Integer level, String imgPath, String precondition, String title, String excStep, String expResults, String remarks, Integer status, String apitestCaseid, String unittestCaseid, String uitestCaseid, Long backdevId, String relateDemand, Long frontdevId, Long productmanId, Date createTime, Date modifiedTime, Long creatorId, Long modifierId) {
-        this.id = id;
-        this.functionId = functionId;
-        this.level = level;
-        this.imgPath = imgPath;
-        this.precondition = precondition;
-        this.title = title;
-        this.excStep = excStep;
-        this.expResults = expResults;
-        this.remarks = remarks;
-        this.status = status;
-        this.apitestCaseid = apitestCaseid;
-        this.unittestCaseid = unittestCaseid;
-        this.uitestCaseid = uitestCaseid;
-        this.backdevId = backdevId;
-        this.relateDemand = relateDemand;
-        this.frontdevId = frontdevId;
-        this.productmanId = productmanId;
-        this.createTime = createTime;
-        this.modifiedTime = modifiedTime;
-        this.creatorId = creatorId;
-        this.modifierId = modifierId;
+    private Integer type;
+
+    public Long getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(Long product_id) {
+        this.product_id = product_id;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public CaseDetail() {
